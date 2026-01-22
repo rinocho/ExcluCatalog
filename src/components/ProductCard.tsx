@@ -17,7 +17,7 @@ export default function ProductCard({ product, priority = false, onClick }: Prod
     return (
         <div
             onClick={onClick}
-            className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 flex flex-col cursor-pointer group"
+            className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden hover:shadow-xl active:scale-98 transition-all duration-200 flex flex-col cursor-pointer group snap-start"
         >
             <div className="relative aspect-square w-full bg-gray-200 dark:bg-gray-700 overflow-hidden">
                 <ProductImage

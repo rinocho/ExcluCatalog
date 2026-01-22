@@ -20,12 +20,12 @@ export default function ProductDetailModal({ product, isOpen, onClose }: Product
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
             {/* Overlay with backdrop blur */}
             <div
-                className="absolute inset-0 bg-black/50 backdrop-blur-sm transition-opacity animate-in fade-in"
+                className="absolute inset-0 bg-black/60 backdrop-blur-[10px] transition-opacity animate-in fade-in duration-300"
                 onClick={onClose}
             />
 
             {/* Modal Content - Vertical Minimalist Design */}
-            <div className="relative w-[70%] h-[70%] sm:w-full sm:max-w-md sm:h-[85vh] bg-white dark:bg-gray-800 rounded-2xl shadow-2xl overflow-hidden flex flex-col animate-in zoom-in-95 duration-200">
+            <div className="relative w-[80%] h-[80%] sm:w-full sm:max-w-md sm:h-[85vh] bg-white dark:bg-gray-800 rounded-3xl shadow-2xl overflow-hidden flex flex-col animate-in fade-in zoom-in-95 duration-300 overscroll-contain">
 
                 {/* Close Button */}
                 <button

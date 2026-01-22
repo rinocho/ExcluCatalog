@@ -91,7 +91,7 @@ export default function CatalogoPage() {
                 )}
 
                 {viewMode === 'grid' ? (
-                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-6">
+                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-6 snap-y snap-proximity">
                         {currentProducts.map((product, index) => (
                             <ProductCard
                                 key={product.id}
