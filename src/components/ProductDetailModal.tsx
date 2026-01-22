@@ -25,7 +25,7 @@ export default function ProductDetailModal({ product, isOpen, onClose }: Product
             />
 
             {/* Modal Content - Vertical Minimalist Design */}
-            <div className="relative w-full max-w-md h-[85vh] bg-white dark:bg-gray-800 rounded-2xl shadow-2xl overflow-hidden flex flex-col animate-in zoom-in-95 duration-200">
+            <div className="relative w-[70%] h-[70%] sm:w-full sm:max-w-md sm:h-[85vh] bg-white dark:bg-gray-800 rounded-2xl shadow-2xl overflow-hidden flex flex-col animate-in zoom-in-95 duration-200">
 
                 {/* Close Button */}
                 <button

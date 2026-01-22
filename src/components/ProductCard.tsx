@@ -30,7 +30,7 @@ export default function ProductCard({ product, priority = false, onClick }: Prod
             </div>
             <div className="p-4 flex-grow flex flex-col justify-between">
                 <div>
-                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-1 line-clamp-2">{product.name}</h3>
+                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-1">{product.name}</h3>
                     <div className="flex flex-col mb-4">
                         <div className="flex items-center gap-2 mb-1 flex-wrap">
                             <span className="text-xs text-gray-500 dark:text-gray-400 font-mono bg-gray-100 dark:bg-gray-700 px-2 py-0.5 rounded">

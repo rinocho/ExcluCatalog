@@ -39,28 +39,28 @@ export default function CartModal({ isOpen, onClose }: CartModalProps) {
                         </div>
                     ) : (
                         <div className="overflow-x-auto">
-                            <table className="w-full border-collapse border border-gray-300 dark:border-gray-700 text-left">
+                            <table className="w-full border-collapse border border-gray-300 dark:border-gray-700 text-left text-xs sm:text-base">
                                 <thead className="sticky top-0 z-10 shadow-sm">
                                     <tr className="bg-gray-100 dark:bg-gray-800">
                                         <th
-                                            className="border border-gray-300 dark:border-gray-700 p-3 font-semibold text-gray-900 dark:text-white cursor-pointer select-none hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                                            className="border border-gray-300 dark:border-gray-700 p-1 sm:p-3 font-semibold text-gray-900 dark:text-white cursor-pointer select-none hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
                                             onClick={() => setShowCode(!showCode)}
                                             title="Clic para alternar entre Nombre y Código"
                                         >
                                             {showCode ? "Código" : "Producto"}
                                         </th>
-                                        <th className="border border-gray-300 dark:border-gray-700 p-3 font-semibold text-gray-900 dark:text-white w-32 text-center">Cant.</th>
-                                        <th className="border border-gray-300 dark:border-gray-700 p-3 font-semibold text-gray-900 dark:text-white w-24 text-right">Precio</th>
-                                        <th className="border border-gray-300 dark:border-gray-700 p-3 font-semibold text-gray-900 dark:text-white w-24 text-right">Subtotal</th>
-                                        <th className="border border-gray-300 dark:border-gray-700 p-3 font-semibold text-gray-900 dark:text-white w-16 text-center">Acción</th>
+                                        <th className="border border-gray-300 dark:border-gray-700 p-1 sm:p-3 font-semibold text-gray-900 dark:text-white w-24 sm:w-32 text-center">Cant.</th>
+                                        <th className="border border-gray-300 dark:border-gray-700 p-1 sm:p-3 font-semibold text-gray-900 dark:text-white w-20 sm:w-24 text-right">Precio</th>
+                                        <th className="border border-gray-300 dark:border-gray-700 p-1 sm:p-3 font-semibold text-gray-900 dark:text-white w-20 sm:w-24 text-right">Subtotal</th>
+                                        <th className="border border-gray-300 dark:border-gray-700 p-1 sm:p-3 font-semibold text-gray-900 dark:text-white w-12 sm:w-16 text-center">Acción</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {items.map((item) => (
                                         <tr key={item.id} className="hover:bg-gray-50 dark:hover:bg-gray-800/50">
-                                            <td className="border border-gray-300 dark:border-gray-700 p-3 text-gray-800 dark:text-gray-200">
-                                                <div className="flex items-center gap-3">
-                                                    <div className="relative w-12 h-12 rounded overflow-hidden shrink-0 border border-gray-200 dark:border-gray-700">
+                                            <td className="border border-gray-300 dark:border-gray-700 p-1 sm:p-3 text-gray-800 dark:text-gray-200">
+                                                <div className="flex items-center gap-2 sm:gap-3">
+                                                    <div className="relative w-10 h-10 sm:w-12 sm:h-12 rounded overflow-hidden shrink-0 border border-gray-200 dark:border-gray-700">
                                                         <ProductImage
                                                             code={item.code}
                                                             alt={item.name}
@@ -68,14 +68,14 @@ export default function CartModal({ isOpen, onClose }: CartModalProps) {
                                                             className="object-cover"
                                                         />
                                                     </div>
-                                                    <span className="font-medium">{showCode ? item.code : item.name}</span>
+                                                    <span className="font-medium break-words min-w-[80px]">{showCode ? item.code : item.name}</span>
                                                 </div>
                                             </td>
-                                            <td className="border border-gray-300 dark:border-gray-700 p-3 text-gray-800 dark:text-gray-200 text-center">
-                                                <div className="flex items-center justify-center gap-2">
+                                            <td className="border border-gray-300 dark:border-gray-700 p-1 sm:p-3 text-gray-800 dark:text-gray-200 text-center">
+                                                <div className="flex items-center justify-center gap-1 sm:gap-2">
                                                     <button
                                                         onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                                                        className="w-8 h-8 rounded-full bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 flex items-center justify-center text-gray-600 dark:text-gray-300 transition-colors"
+                                                        className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 flex items-center justify-center text-gray-600 dark:text-gray-300 transition-colors"
                                                         disabled={item.quantity <= 1}
                                                     >
                                                         -
@@ -99,28 +99,28 @@ export default function CartModal({ isOpen, onClose }: CartModalProps) {
                                                                 }
                                                             }}
                                                             onFocus={(e) => e.target.select()}
-                                                            className="w-12 py-1 text-center bg-gray-50 dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 appearance-none"
+                                                            className="w-8 sm:w-12 py-1 text-center bg-gray-50 dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 appearance-none"
                                                         />
                                                     </div>
                                                     <button
                                                         onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                                                        className="w-8 h-8 rounded-full bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 flex items-center justify-center text-gray-600 dark:text-gray-300 transition-colors"
+                                                        className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 flex items-center justify-center text-gray-600 dark:text-gray-300 transition-colors"
                                                     >
                                                         +
                                                     </button>
                                                 </div>
                                             </td>
-                                            <td className="border border-gray-300 dark:border-gray-700 p-3 text-gray-800 dark:text-gray-200 text-right">${item.price.toFixed(2)}</td>
-                                            <td className="border border-gray-300 dark:border-gray-700 p-3 text-gray-800 dark:text-gray-200 text-right font-medium">
+                                            <td className="border border-gray-300 dark:border-gray-700 p-1 sm:p-3 text-gray-800 dark:text-gray-200 text-right">${item.price.toFixed(2)}</td>
+                                            <td className="border border-gray-300 dark:border-gray-700 p-1 sm:p-3 text-gray-800 dark:text-gray-200 text-right font-medium">
                                                 ${(item.price * item.quantity).toFixed(2)}
                                             </td>
-                                            <td className="border border-gray-300 dark:border-gray-700 p-3 text-center">
+                                            <td className="border border-gray-300 dark:border-gray-700 p-1 sm:p-3 text-center">
                                                 <button
                                                     onClick={() => removeFromCart(item.id)}
-                                                    className="text-red-500 hover:text-red-700 hover:bg-red-100 dark:hover:bg-red-900/30 p-2 rounded transition-colors"
+                                                    className="text-red-500 hover:text-red-700 hover:bg-red-100 dark:hover:bg-red-900/30 p-1 sm:p-2 rounded transition-colors"
                                                     title="Eliminar"
                                                 >
-                                                    <Trash2 size={20} />
+                                                    <Trash2 size={16} className="sm:w-5 sm:h-5" />
                                                 </button>
                                             </td>
                                         </tr>

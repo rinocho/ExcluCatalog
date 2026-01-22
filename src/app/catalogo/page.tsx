@@ -91,7 +91,7 @@ export default function CatalogoPage() {
                 )}
 
                 {viewMode === 'grid' ? (
-                    <div className="grid grid-cols-3 gap-4 sm:gap-6">
+                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-6">
                         {currentProducts.map((product, index) => (
                             <ProductCard
                                 key={product.id}
@@ -105,24 +105,24 @@ export default function CatalogoPage() {
                     <div className="bg-white dark:bg-gray-800 rounded-lg shadow overflow-hidden">
                         <div className="overflow-x-auto">
                             <table className="w-full text-left border-collapse">
-                                <thead className="bg-gray-50 dark:bg-gray-700/50">
+                                <thead className="bg-gray-50 dark:bg-gray-700/50 text-xs sm:text-base">
                                     <tr>
-                                        <th className="p-4 font-semibold text-gray-900 dark:text-white border-b dark:border-gray-700">Código</th>
-                                        <th className="p-4 font-semibold text-gray-900 dark:text-white border-b dark:border-gray-700">Producto</th>
-                                        <th className="p-4 font-semibold text-gray-900 dark:text-white border-b dark:border-gray-700">Modelo</th>
-                                        <th className="p-4 font-semibold text-gray-900 dark:text-white border-b dark:border-gray-700 text-right">Precio</th>
+                                        <th className="p-2 sm:p-4 font-semibold text-gray-900 dark:text-white border-b dark:border-gray-700">Código</th>
+                                        <th className="p-2 sm:p-4 font-semibold text-gray-900 dark:text-white border-b dark:border-gray-700">Producto</th>
+                                        <th className="p-2 sm:p-4 font-semibold text-gray-900 dark:text-white border-b dark:border-gray-700">Modelo</th>
+                                        <th className="p-2 sm:p-4 font-semibold text-gray-900 dark:text-white border-b dark:border-gray-700 text-right">Precio</th>
                                     </tr>
                                 </thead>
-                                <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
+                                <tbody className="divide-y divide-gray-200 dark:divide-gray-700 text-xs sm:text-base">
                                     {currentProducts.map((product) => (
                                         <tr key={product.id} className="hover:bg-gray-50 dark:hover:bg-gray-700/30 transition-colors">
-                                            <td className="p-4 text-gray-600 dark:text-gray-300 font-mono text-sm">{product.code}</td>
-                                            <td className="p-4 text-gray-900 dark:text-white font-medium">{product.name}</td>
-                                            <td className="p-4 text-gray-600 dark:text-gray-300">{product.model}</td>
-                                            <td className="p-4 text-right">
+                                            <td className="p-2 sm:p-4 text-gray-600 dark:text-gray-300 font-mono">{product.code}</td>
+                                            <td className="p-2 sm:p-4 text-gray-900 dark:text-white font-medium whitespace-normal break-words min-w-[120px]">{product.name}</td>
+                                            <td className="p-2 sm:p-4 text-gray-600 dark:text-gray-300">{product.model}</td>
+                                            <td className="p-2 sm:p-4 text-right">
                                                 <button
                                                     onClick={() => addToCart(product)}
-                                                    className="w-32 bg-blue-600 hover:bg-blue-700 text-white font-bold py-1.5 px-4 rounded transition-colors text-sm"
+                                                    className="w-full sm:w-32 bg-blue-600 hover:bg-blue-700 text-white font-bold py-1.5 px-2 sm:px-4 rounded transition-colors text-xs sm:text-sm"
                                                 >
                                                     ${product.price.toFixed(2)}
                                                 </button>
