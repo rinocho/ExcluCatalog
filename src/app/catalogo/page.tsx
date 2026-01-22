@@ -8,7 +8,7 @@ import FilterModal from "@/components/FilterModal";
 import CartModal from "@/components/CartModal";
 import AdminModal from "@/components/AdminModal";
 import FloatingPagination from "@/components/FloatingPagination";
-import ProductDetailModal from "@/components/ProductDetailModal";
+import OrderHistoryModal from "@/components/OrderHistoryModal";
 import { useCart } from "@/context/CartContext";
 import { useProducts, Product } from "@/context/ProductContext";
 
@@ -18,12 +18,15 @@ export default function CatalogoPage() {
     const [isFilterOpen, setIsFilterOpen] = useState(false);
     const [isCartOpen, setIsCartOpen] = useState(false);
     const [isAdminOpen, setIsAdminOpen] = useState(false);
+    const [isHistoryOpen, setIsHistoryOpen] = useState(false);
     const [viewMode, setViewMode] = useState<'grid' | 'table'>('grid');
     const [selectedFilter, setSelectedFilter] = useState<{ type: 'category' | 'model'; value: string | null }>({ type: 'category', value: null });
     const [currentPage, setCurrentPage] = useState(1);
     const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
     const { addToCart } = useCart();
     const { products } = useProducts();
+
+    // ... (rest of the logic remains the same) ...
 
     // Extract categories automatically from first word of product name
     const categories = useMemo(() => {
@@ -68,6 +71,7 @@ export default function CatalogoPage() {
             <Header
                 onOpenFilter={() => setIsFilterOpen(true)}
                 onOpenAdmin={() => setIsAdminOpen(true)}
+                onOpenHistory={() => setIsHistoryOpen(true)}
                 viewMode={viewMode}
                 onToggleViewMode={() => setViewMode(prev => prev === 'grid' ? 'table' : 'grid')}
             />
@@ -161,6 +165,11 @@ export default function CatalogoPage() {
             <AdminModal
                 isOpen={isAdminOpen}
                 onClose={() => setIsAdminOpen(false)}
+            />
+
+            <OrderHistoryModal
+                isOpen={isHistoryOpen}
+                onClose={() => setIsHistoryOpen(false)}
             />
 
             <ProductDetailModal

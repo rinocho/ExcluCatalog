@@ -12,7 +12,7 @@ interface CartModalProps {
 }
 
 export default function CartModal({ isOpen, onClose }: CartModalProps) {
-    const { items, removeFromCart, updateQuantity } = useCart();
+    const { items, removeFromCart, updateQuantity, saveOrder } = useCart();
     const [showCode, setShowCode] = useState(false);
 
     if (!isOpen) return null;
@@ -138,7 +138,15 @@ export default function CartModal({ isOpen, onClose }: CartModalProps) {
                         <div className="text-2xl font-bold text-gray-900 dark:text-white">
                             Total: <span className="text-blue-600 dark:text-blue-400">${total.toFixed(2)}</span>
                         </div>
-                        <button className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white text-lg font-bold py-3 px-8 rounded-lg shadow-lg transition-transform hover:scale-105">
+                        <button
+                            onClick={() => {
+                                saveOrder();
+                                // Here you would typically redirect to WhatsApp or clear cart
+                                // For now, we just save history
+                                alert("¡Pedido guardado en historial!");
+                            }}
+                            className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white text-lg font-bold py-3 px-8 rounded-lg shadow-lg transition-transform hover:scale-105"
+                        >
                             Finalizar Compra
                         </button>
                     </div>

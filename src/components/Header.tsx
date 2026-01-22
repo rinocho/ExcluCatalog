@@ -1,17 +1,18 @@
 "use client";
 
-import { Filter, LogOut, Settings, LayoutGrid, Table } from "lucide-react";
+import { Filter, LogOut, Settings, LayoutGrid, Table, ClipboardList } from "lucide-react";
 import { ThemeToggle } from "./ThemeToggle";
 import { useAuth } from "@/context/AuthContext";
 
 interface HeaderProps {
     onOpenFilter: () => void;
     onOpenAdmin: () => void;
+    onOpenHistory: () => void;
     viewMode: 'grid' | 'table';
     onToggleViewMode: () => void;
 }
 
-export default function Header({ onOpenFilter, onOpenAdmin, viewMode, onToggleViewMode }: HeaderProps) {
+export default function Header({ onOpenFilter, onOpenAdmin, onOpenHistory, viewMode, onToggleViewMode }: HeaderProps) {
     const { logout } = useAuth();
 
     return (
@@ -26,6 +27,13 @@ export default function Header({ onOpenFilter, onOpenAdmin, viewMode, onToggleVi
                             title="Filtros"
                         >
                             <Filter className="h-5 w-5" />
+                        </button>
+                        <button
+                            onClick={onOpenHistory}
+                            className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-800 text-gray-800 dark:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            title="Mis Pedidos"
+                        >
+                            <ClipboardList className="h-5 w-5" />
                         </button>
                         <button
                             onClick={onOpenAdmin}
