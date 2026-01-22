@@ -9,6 +9,7 @@ import CartModal from "@/components/CartModal";
 import AdminModal from "@/components/AdminModal";
 import FloatingPagination from "@/components/FloatingPagination";
 import OrderHistoryModal from "@/components/OrderHistoryModal";
+import ProductDetailModal from "@/components/ProductDetailModal";
 import { useCart } from "@/context/CartContext";
 import { useProducts, Product } from "@/context/ProductContext";
 
