@@ -8,13 +8,14 @@ interface ProductImageProps {
     code: string;
     alt: string;
     className?: string;
+    imgClassName?: string;
     fill?: boolean;
     width?: number;
     height?: number;
     priority?: boolean;
 }
 
-export default function ProductImage({ code, alt, className, fill, width, height, priority = false }: ProductImageProps) {
+export default function ProductImage({ code, alt, className, imgClassName, fill, width, height, priority = false }: ProductImageProps) {
     const [src, setSrc] = useState<string>(`/product-image/${code}.webp`);
     const [error, setError] = useState(false);
     const [attempt, setAttempt] = useState(0); // 0: webp, 1: jpg, 2: png, 3: fallback
@@ -58,7 +59,7 @@ export default function ProductImage({ code, alt, className, fill, width, height
             <Image
                 src={src}
                 alt={alt}
-                className={`transition-opacity duration-300 ${isLoading ? 'opacity-0' : 'opacity-100'}`}
+                className={`transition-opacity duration-300 ${isLoading ? 'opacity-0' : 'opacity-100'} ${imgClassName || ''}`}
                 fill={fill}
                 width={!fill ? width : undefined}
                 height={!fill ? height : undefined}

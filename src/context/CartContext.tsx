@@ -16,11 +16,19 @@ export interface CartItem extends Product {
     quantity: number;
 }
 
+export interface Customer {
+    rif: string;
+    name: string;
+    phone: string;
+    address: string;
+}
+
 export interface Order {
     id: string;
     date: string;
     total: number;
     items: CartItem[];
+    customer: Customer;
 }
 
 interface CartContextType {
@@ -31,7 +39,7 @@ interface CartContextType {
     clearCart: () => void;
     totalItems: number;
     orders: Order[];
-    saveOrder: () => void;
+    saveOrder: (customer: Customer) => void;
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -102,17 +110,19 @@ export function CartProvider({ children }: { children: ReactNode }) {
         setItems([]);
     };
 
-    const saveOrder = () => {
+    const saveOrder = (customer: Customer) => {
         if (items.length === 0) return;
 
         const newOrder: Order = {
-            id: Date.now().toString(), // Simple ID based on timestamp
+            id: Date.now().toString(),
             date: new Date().toLocaleString(),
             total: items.reduce((sum, item) => sum + item.price * item.quantity, 0),
-            items: [...items], // Copy items
+            items: [...items],
+            customer: customer,
         };
 
-        setOrders((prevOrders) => [newOrder, ...prevOrders]); // Add new order to the beginning
+        setOrders((prevOrders) => [newOrder, ...prevOrders]);
+        setItems([]); // Clear cart immediately
     };
 
     const totalItems = items.reduce((sum, item) => sum + item.quantity, 0);

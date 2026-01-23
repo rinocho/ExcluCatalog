@@ -73,10 +73,13 @@ export default function OrderHistoryModal({ isOpen, onClose }: OrderHistoryModal
                                     >
                                         <div className="flex flex-col gap-1">
                                             <span className="text-xs font-mono text-gray-500 dark:text-gray-400 uppercase tracking-wider">
-                                                ID: {order.id.slice(-8)}
+                                                #{order.id.slice(-6)} • {order.date}
                                             </span>
-                                            <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                                                {order.date}
+                                            <span className="text-base font-bold text-gray-900 dark:text-white">
+                                                {order.customer?.name || "Cliente sin nombre"}
+                                            </span>
+                                            <span className="text-sm text-gray-600 dark:text-gray-400">
+                                                {order.customer?.rif || "Sin RIF"}
                                             </span>
                                         </div>
 
