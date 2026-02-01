@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 import { X, ZoomIn, ZoomOut, RotateCcw } from "lucide-react";
 import ProductImage from "./ProductImage";
@@ -12,10 +13,32 @@ interface ImageLightboxProps {
 }
 
 export default function ImageLightbox({ code, alt, isOpen, onClose }: ImageLightboxProps) {
-    if (!isOpen) return null;
+    const [isMounted, setIsMounted] = useState(false);
+    const [isVisible, setIsVisible] = useState(false);
+
+    useEffect(() => {
+        if (isOpen) {
+            setIsMounted(true);
+            // Small timeout to ensure DOM is ready before starting animation
+            requestAnimationFrame(() => {
+                setIsVisible(true);
+            });
+        } else {
+            setIsVisible(false);
+            const timer = setTimeout(() => {
+                setIsMounted(false);
+            }, 300); // Match duration-300
+            return () => clearTimeout(timer);
+        }
+    }, [isOpen]);
+
+    if (!isMounted) return null;
 
     return (
-        <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/95 backdrop-blur-md animate-in fade-in duration-300">
+        <div
+            className={`fixed inset-0 z-[60] flex items-center justify-center bg-black/95 backdrop-blur-md transition-opacity duration-300 ${isVisible ? "opacity-100" : "opacity-0"
+                }`}
+        >
             {/* Close Button */}
             <button
                 onClick={onClose}
@@ -34,7 +57,8 @@ export default function ImageLightbox({ code, alt, isOpen, onClose }: ImageLight
                 {({ zoomIn, zoomOut, resetTransform }) => (
                     <>
                         {/* Controls */}
-                        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-50 flex items-center gap-4 bg-black/50 backdrop-blur-md px-6 py-3 rounded-full border border-white/10">
+                        <div className={`absolute bottom-8 left-1/2 -translate-x-1/2 z-50 flex items-center gap-4 bg-black/50 backdrop-blur-md px-6 py-3 rounded-full border border-white/10 transition-transform duration-300 ${isVisible ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
+                            }`}>
                             <button onClick={() => zoomOut()} className="text-white hover:text-blue-400 transition-colors">
                                 <ZoomOut size={24} />
                             </button>
@@ -49,10 +73,13 @@ export default function ImageLightbox({ code, alt, isOpen, onClose }: ImageLight
                         {/* Image */}
                         <TransformComponent
                             wrapperClass="w-full h-full flex items-center justify-center"
-                            contentClass="w-full h-full flex items-center justify-center"
+                            contentClass="w-full h-full flex items-center justify-center !w-full !h-full"
+                            wrapperStyle={{ width: "100%", height: "100%" }}
+                            contentStyle={{ width: "100%", height: "100%" }}
                         >
                             <div
-                                className="relative w-[90vw] h-[80vh] cursor-zoom-out"
+                                className={`relative w-[90vw] h-[80vh] cursor-zoom-out transition-transform duration-300 ${isVisible ? "scale-100 opacity-100" : "scale-95 opacity-0"
+                                    }`}
                                 onDoubleClick={onClose}
                             >
                                 <ProductImage
